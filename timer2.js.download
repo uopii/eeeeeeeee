@@ -1,0 +1,30 @@
+function liczCzas()
+{
+  now = new Date();
+  rok = now.getFullYear();
+  miesiac = now.getMonth();
+  dzien = now.getDate();
+  to = new Date(rok,miesiac,dzien,10,0,0);
+  ile = to.getTime() - now.getTime();
+  godzin = Math.floor(ile / (1000 * 60 * 60));
+  minut = Math.floor( ile / (1000 * 60)-godzin*60);
+  sekund = Math.floor(ile / 1000 - godzin*60*60 - minut*60);
+  if (godzin < 0)
+  {
+    to = new Date(rok,miesiac,dzien,15,0,0);
+    ile = to.getTime() - now.getTime();
+    godzin = Math.floor(ile / (1000 * 60 * 60));
+    minut = Math.floor(ile / (1000 * 60)-godzin*60);
+   sekund = Math.floor(ile / 1000 - godzin*60*60 - minut*60);
+  }
+    if (godzin < 10)
+		  godzin = "0" + godzin;
+    if (minut < 10)
+		  minut = "0" + minut;
+	if (sekund < 10)
+		  sekund = "0" + sekund;
+  document.getElementById("time").innerHTML = godzin+" : "+minut+" : "+sekund;
+  }
+var animeInt;
+clearInterval(animeInt);
+animeInt = setInterval("liczCzas()", 1000);
